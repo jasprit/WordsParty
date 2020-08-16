@@ -19,10 +19,10 @@ class MainViewModel : ViewModel() {
     var led1 = MutableLiveData<String>()
     var led2 = MutableLiveData<String>()
     var led3 = MutableLiveData<String>()
+    var isPlayerLost = MutableLiveData<Boolean>()
 
 
     fun resetGame(isNewGame: Boolean) {
-
         if (isNewGame) {
             currentAnswer.value = generateRandomNumber()
         }
@@ -36,6 +36,10 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun tryAgainClicked(view: View) {
+        resetGame(false)
+        isPlayerLost.value = false
+    }
 
     fun gameButtonClicked(view: View) {
         var button = view as Button

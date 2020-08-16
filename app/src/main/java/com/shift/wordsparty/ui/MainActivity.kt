@@ -1,6 +1,7 @@
 package com.shift.wordsparty.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -23,24 +24,29 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.resetGame(true)
         setObservables()
+
+        Log.d("SDasdsad", viewModel.isPlayerLost.value.toString());
     }
 
 
     private fun setObservables() {
         viewModel.guessedAnswer.observe(this, Observer {
-            if (it.length == 3) {
-                showDialog(viewModel.checkIfPlayerHasWon())
+            if (it.length == 3 && viewModel.checkIfPlayerHasWon()) {
+                showDialog()
+            } else if (it.length == 3) {
+                viewModel.isPlayerLost.value = true
             }
         })
     }
 
-    private fun showDialog(isPlayerWon: Boolean) {
+    private fun showDialog() {
         MaterialAlertDialogBuilder(this)
             .setCancelable(false)
-            .setTitle(if (isPlayerWon) "Hurray" else "Oops!!!!")
-            .setMessage(if (isPlayerWon) "Can't wait to play more." else "I will try again.")
-            .setPositiveButton(if (isPlayerWon) "Play Again" else "Try again") { dialog, which ->
-                viewModel.resetGame(viewModel.checkIfPlayerHasWon())
+            .setTitle("Hurray")
+            .setMessage("Can't wait to play more.")
+            .setPositiveButton("Play Again") { dialog, which ->
+                viewModel.resetGame(true)
+                viewModel.isPlayerLost.value = false
             }
             .show()
     }
