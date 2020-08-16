@@ -1,5 +1,7 @@
 package com.shift.wordsparty.extentions
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
@@ -16,5 +18,10 @@ fun generateRandomNumber(): String {
         .joinToString("");
 //    println(randomString)
     return randomString;
+}
+
+fun playSound(context: Context,file:Int){
+    var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, file)
+    mediaPlayer?.start()
 }
 

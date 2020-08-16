@@ -5,7 +5,9 @@ import android.view.View
 import android.widget.Button
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.shift.wordsparty.R
 import com.shift.wordsparty.extentions.generateRandomNumber
+import com.shift.wordsparty.extentions.playSound
 
 
 enum class LedColors { RED, GREEN, GREY, ORANGE }
@@ -20,6 +22,8 @@ class MainViewModel : ViewModel() {
     var led2 = MutableLiveData<String>()
     var led3 = MutableLiveData<String>()
     var isPlayerLost = MutableLiveData<Boolean>()
+
+    var jassi =true
 
 
     fun resetGame(isNewGame: Boolean) {
@@ -44,6 +48,8 @@ class MainViewModel : ViewModel() {
     fun gameButtonClicked(view: View) {
         var button = view as Button
         Log.d(mainViewModelLog, "buttonClicked ${button.text}")
+
+        if (guessedAnswer.value?.length ?: 0 < 3) playSound(view.context, R.raw.button_click)
         updateGuessedAnswer(button.text.toString())
     }
 

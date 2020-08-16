@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.shift.wordsparty.R
 import com.shift.wordsparty.databinding.ActivityMainBinding
+import com.shift.wordsparty.extentions.playSound
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,10 +23,9 @@ class MainActivity : AppCompatActivity() {
         binding?.viewmodel = viewModel
 
 
+        playSound(this, R.raw.abc)
         viewModel.resetGame(true)
         setObservables()
-
-        Log.d("SDasdsad", viewModel.isPlayerLost.value.toString());
     }
 
 
@@ -33,8 +33,10 @@ class MainActivity : AppCompatActivity() {
         viewModel.guessedAnswer.observe(this, Observer {
             if (it.length == 3 && viewModel.checkIfPlayerHasWon()) {
                 showDialog()
+                playSound(this, R.raw.victory)
             } else if (it.length == 3) {
                 viewModel.isPlayerLost.value = true
+                playSound(this, R.raw.error)
             }
         })
     }
