@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shift.wordsparty.R
+import com.shift.wordsparty.extentions.generateButtonSequence
 import com.shift.wordsparty.extentions.generateRandomNumber
 import com.shift.wordsparty.extentions.playSound
 
@@ -21,6 +22,7 @@ class MainViewModel : ViewModel() {
     var led3 = MutableLiveData<String>()
     var isPlayerWon = MutableLiveData<Boolean>()
     var isPlayerLost = MutableLiveData<Boolean>()
+    var buttonSequence = "ABC"
 
     fun resetGame(isNewGame: Boolean) {
         if (isNewGame) {

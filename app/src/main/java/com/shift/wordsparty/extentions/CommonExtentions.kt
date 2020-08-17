@@ -2,14 +2,7 @@ package com.shift.wordsparty.extentions
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.view.View
-import android.widget.ImageView
-import androidx.core.content.ContextCompat
-import androidx.databinding.BindingAdapter
-import com.shift.wordsparty.R
 import com.shift.wordsparty.Util.Constants
-import com.shift.wordsparty.ui.LedColors
-
 
 
 fun generateRandomNumber(): String {
@@ -21,7 +14,12 @@ fun generateRandomNumber(): String {
     return randomString;
 }
 
-fun playSound(context: Context,file:Int){
+fun generateButtonSequence(): String {
+
+    return ('A'..'C').map { it }.shuffled().joinToString("")
+}
+
+fun playSound(context: Context, file: Int) {
     val mediaPlayer: MediaPlayer? = MediaPlayer.create(context, file)
     mediaPlayer?.start()
 }
