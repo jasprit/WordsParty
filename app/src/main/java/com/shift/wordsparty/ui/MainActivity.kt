@@ -1,7 +1,6 @@
 package com.shift.wordsparty.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -13,12 +12,13 @@ import com.shift.wordsparty.extentions.playSound
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by lazy { ViewModelProvider(this).get(MainViewModel::class.java) }
-    private var binding: ActivityMainBinding? = null
+     lateinit var viewModel:MainViewModel
+     private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         binding?.lifecycleOwner = this
         binding?.viewmodel = viewModel
 
@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private fun setObservables() {
         viewModel.guessedAnswer.observe(this, Observer {
             if (it.length == 3 && viewModel.checkIfPlayerHasWon()) {
+                viewModel.isPlayerWon.value = true
                 showDialog()
                 playSound(this, R.raw.victory)
             } else if (it.length == 3) {
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             .setMessage("Can't wait to play more.")
             .setPositiveButton("Play Again") { dialog, which ->
                 viewModel.resetGame(true)
-                viewModel.isPlayerLost.value = false
             }
             .show()
     }

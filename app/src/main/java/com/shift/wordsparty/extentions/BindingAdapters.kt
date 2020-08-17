@@ -55,7 +55,7 @@ fun setCurrentAns(view: View, currentAns: String, textPos: Int) {
         }
 
         else -> {
-            textView.text = ""
+            textView.text = "?"
         }
     }
 }

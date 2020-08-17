@@ -4,7 +4,6 @@ package com.shift.wordsparty
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.RootMatchers.isDialog
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -13,11 +12,9 @@ import com.shift.wordsparty.ui.MainActivity
 import com.shift.wordsparty.ui.MainViewModel
 import junit.framework.Assert.assertEquals
 import org.hamcrest.core.IsNot.not
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-
 import org.junit.runner.RunWith
 
 
@@ -27,19 +24,14 @@ import org.junit.runner.RunWith
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 
+
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
 
     @Rule
     @JvmField
     val rule = ActivityTestRule(MainActivity::class.java)
-
-    private lateinit var viewModel: MainViewModel
-
-    @Before
-    fun setUp() {
-        viewModel = MainViewModel()
-    }
 
 
     @Test
@@ -69,32 +61,6 @@ class ExampleInstrumentedTest {
         onView(withText("Try Again")).check(matches(not(isDisplayed())))
     }
 
-
-//    // stop device animations in developer options before test this.
-//    @Test
-//    fun test_try_again_button_should_visible_if_guessed_answer_is_wrong() {
-//
-//        viewModel.setNewCurrentAns("AAA")
-//
-//        onView(withId(R.id.buttonA)).perform(click())
-//        onView(withId(R.id.buttonB)).perform(click())
-//        onView(withId(R.id.buttonB)).perform(click())
-//        onView(withText("Try Again")).check(matches((isDisplayed())))
-//
-//    }
-
-//    @Test
-//    fun test_victory_dialog_is_displayed_if_player_has_won() {
-//
-//        viewModel.setNewCurrentAns("AAA")
-//
-//        onView(withId(R.id.buttonA)).perform(click())
-//        onView(withId(R.id.buttonA)).perform(click())
-//        onView(withId(R.id.buttonA)).perform(click())
-//        onView(withText("Hurray"))
-//            .inRoot(isDialog())
-//            .check(matches(isDisplayed()))
-//    }
-
-
 }
+
+

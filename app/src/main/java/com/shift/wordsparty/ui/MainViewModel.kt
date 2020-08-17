@@ -19,31 +19,28 @@ class MainViewModel : ViewModel() {
     var led1 = MutableLiveData<String>()
     var led2 = MutableLiveData<String>()
     var led3 = MutableLiveData<String>()
+    var isPlayerWon = MutableLiveData<Boolean>()
     var isPlayerLost = MutableLiveData<Boolean>()
 
     fun resetGame(isNewGame: Boolean) {
         if (isNewGame) {
             currentAnswer.value = generateRandomNumber()
         }
-
+        isPlayerWon.value = false
+        isPlayerLost.value = false
         guessedAnswer.value = ""
         led1.value = LedColors.GREY.name
         led2.value = LedColors.GREY.name
         led3.value = LedColors.GREY.name
-        guessedAnswer.observeForever {
-
-        }
     }
 
     fun tryAgainClicked(view: View) {
         resetGame(false)
-        isPlayerLost.value = false
+        isPlayerWon.value = false
     }
 
     fun gameButtonClicked(view: View) {
-        var button = view as Button
-     //   Log.d(mainViewModelLog, "buttonClicked ${button.text}")
-
+        val button = view as Button
         if (guessedAnswer.value?.length ?: 0 < 3) playSound(view.context, R.raw.button_click)
         updateGuessedAnswer(button.text.toString())
     }
