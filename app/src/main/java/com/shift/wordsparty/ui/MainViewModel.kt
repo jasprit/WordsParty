@@ -40,6 +40,10 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun setNewCurrentAns(newValue:String){
+        currentAnswer.value = newValue
+    }
+
     fun tryAgainClicked(view: View) {
         resetGame(false)
         isPlayerLost.value = false
@@ -76,7 +80,7 @@ class MainViewModel : ViewModel() {
     }
 
 
-    private fun checkPlayerAnswerWithPositions(pos: Int, guessedText: String): String {
+    fun checkPlayerAnswerWithPositions(pos: Int, guessedText: String): String {
 
         // Green indicates that the button pressed was correct for this position.
         if (currentAnswer.value?.get(pos).toString() == guessedText)

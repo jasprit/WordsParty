@@ -3,10 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <ScrollView
+        android:background="@drawable/gradient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient"
+        android:layout_height="wrap_content"
+
         tools:context=".ui.MainActivity">
 
         <ImageView
@@ -28,7 +33,7 @@
             android:setColors="@{viewmodel.led2}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_current_ans2" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -54,7 +59,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_current_ans2"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginTop="48dp"
@@ -69,7 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvGuessed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -81,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_current_ans1"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginEnd="4dp"
@@ -91,11 +96,11 @@
             android:textColor="@color/colorWhite"
             android:textPos="@{0}"
             android:textSize="36dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintEnd_toStartOf="@+id/tv_current_ans2"
+            app:layout_constraintTop_toTopOf="@+id/tv_current_ans2" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tv_current_ans3"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_marginStart="4dp"
@@ -105,8 +110,8 @@
             android:textColor="@color/colorWhite"
             android:textPos="@{2}"
             android:textSize="36dp"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/tv_current_ans2"
+            app:layout_constraintTop_toTopOf="@+id/tv_current_ans2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/textView6"
@@ -121,7 +126,7 @@
             android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGuessed" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonA"
@@ -147,17 +152,19 @@
             android:layout_width="80sp"
             android:layout_height="80sp"
             android:layout_marginTop="104dp"
+            android:layout_marginBottom="32dp"
             android:backgroundTint="@color/colorGreyLight"
             android:onClick="@{viewmodel::gameButtonClicked}"
             android:text="B"
             android:textColor="@color/colorBlack"
             android:textSize="36dp"
-            app:cornerRadius="100dp"
             android:visibility="@{viewmodel.isPlayerLost ? View.GONE : View.VISIBLE}"
 
+            app:cornerRadius="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/tvGuessed"
             app:strokeColor="@color/colorPrimary" />
 
         <com.google.android.material.button.MaterialButton
@@ -180,7 +187,7 @@
             app:strokeColor="@color/colorPrimary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
     <data>
         <import type="android.view.View"/>
         <variable
