@@ -1,6 +1,6 @@
 package com.shift.wordsparty.ui
 
-import android.util.Log
+
 import android.view.View
 import android.widget.Button
 import androidx.lifecycle.MutableLiveData
@@ -14,17 +14,12 @@ enum class LedColors { RED, GREEN, GREY, ORANGE }
 
 class MainViewModel : ViewModel() {
 
-    val mainViewModelLog = "MainViewModel"
-
     var currentAnswer = MutableLiveData<String>()
     var guessedAnswer = MutableLiveData<String>()
     var led1 = MutableLiveData<String>()
     var led2 = MutableLiveData<String>()
     var led3 = MutableLiveData<String>()
     var isPlayerLost = MutableLiveData<Boolean>()
-
-    var jassi =true
-
 
     fun resetGame(isNewGame: Boolean) {
         if (isNewGame) {
@@ -36,12 +31,8 @@ class MainViewModel : ViewModel() {
         led2.value = LedColors.GREY.name
         led3.value = LedColors.GREY.name
         guessedAnswer.observeForever {
-            Log.d(mainViewModelLog, "guessedAns $it")
-        }
-    }
 
-    fun setNewCurrentAns(newValue:String){
-        currentAnswer.value = newValue
+        }
     }
 
     fun tryAgainClicked(view: View) {
@@ -51,7 +42,7 @@ class MainViewModel : ViewModel() {
 
     fun gameButtonClicked(view: View) {
         var button = view as Button
-        Log.d(mainViewModelLog, "buttonClicked ${button.text}")
+     //   Log.d(mainViewModelLog, "buttonClicked ${button.text}")
 
         if (guessedAnswer.value?.length ?: 0 < 3) playSound(view.context, R.raw.button_click)
         updateGuessedAnswer(button.text.toString())
@@ -99,7 +90,6 @@ class MainViewModel : ViewModel() {
     fun checkIfPlayerHasWon(): Boolean {
         if (led1.value == LedColors.GREEN.name && led2.value == LedColors.GREEN.name && led3.value == LedColors.GREEN.name)
             return true
-
         return false
     }
 

@@ -34,16 +34,11 @@ class ExampleInstrumentedTest {
     @JvmField
     val rule = ActivityTestRule(MainActivity::class.java)
 
-
-
     private lateinit var viewModel: MainViewModel
-
 
     @Before
     fun setUp() {
-        // MockitoAnnotations.initMocks(this);
         viewModel = MainViewModel()
-
     }
 
 

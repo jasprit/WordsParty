@@ -9,6 +9,7 @@ import com.shift.wordsparty.R
 import com.shift.wordsparty.ui.LedColors
 
 
+//used for led colors
 @BindingAdapter("android:setColors")
 fun setLedColors(view: View, ledColor: String) {
 
@@ -35,7 +36,7 @@ fun setLedColors(view: View, ledColor: String) {
     }
 }
 
-
+//used for setting current answer views
 @BindingAdapter("android:currentAns", "android:textPos")
 fun setCurrentAns(view: View, currentAns: String, textPos: Int) {
 

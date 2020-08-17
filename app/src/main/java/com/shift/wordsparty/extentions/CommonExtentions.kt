@@ -13,7 +13,6 @@ import com.shift.wordsparty.ui.LedColors
 
 
 fun generateRandomNumber(): String {
-
     val randomString = (1..3)
         .map { i -> kotlin.random.Random.nextInt(0, Constants.randomNumberRegex.size) }
         .map(Constants.randomNumberRegex::get)
@@ -23,7 +22,7 @@ fun generateRandomNumber(): String {
 }
 
 fun playSound(context: Context,file:Int){
-    var mediaPlayer: MediaPlayer? = MediaPlayer.create(context, file)
+    val mediaPlayer: MediaPlayer? = MediaPlayer.create(context, file)
     mediaPlayer?.start()
 }
 

@@ -16,12 +16,12 @@ class ExampleUnitTest {
 //        assertEquals(4, 2 + 2)
 //    }
 
+    // check MainViewModelTest class for more cases..
+
     @Test
     fun test_generated_number_lengh_and_patteran() {
         assert(generateRandomNumber().matches(Regex(Constants.ALPHANUMERIC_REGEX)))
         assertEquals(3, generateRandomNumber().length)
     }
-
-
 
 }
